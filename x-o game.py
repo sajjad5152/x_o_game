@@ -3,7 +3,7 @@ from tkinter import*
 class game_x_o_(Tk):
     def __init__(self):
         super().__init__()
-        self.geometry('500x500')
+        self.geometry('330x500')
         self.title('x_o game')
         self.config(bg='light blue')
         self.img_x =PhotoImage(file=('pac_x.png'))
@@ -15,6 +15,7 @@ class game_x_o_(Tk):
         self.nkm=''
         self.nobat_v=''
         self.barande='x'
+        self.counter=0
         self.v_dokme_1_1 = 'normal'
         self.v_dokme_1_2 = 'normal'
         self.v_dokme_1_3 = 'normal'
@@ -28,12 +29,8 @@ class game_x_o_(Tk):
 
     
     def menue_start(self , x):
-        if x == 'main' :
-            self.config(bg='light blue')
-            self.libel.grid_forget()
-            self.btn_1.grid_forget()
-            self.btn_2.grid_forget()
-            self.btn_3.grid_forget()
+
+        self.forget(x)
 
         self.ghab_1= Frame(self , width=10 , height=5  , bg='light yellow' ) 
         self.barchasb_1= Label(self.ghab_1 , width=20 , height=4 , text='welcome to x_o game' , bg='aqua' , font=("permanent marker" , 12) )
@@ -49,10 +46,9 @@ class game_x_o_(Tk):
 
     def seting(self):
 
-        self.forget()
+        self.forget('seting')
 
-    def halat_ha(self):        
-        
+    def scan_pictures(self):
         self.pic1=self.dokme_1_1['image']
         self.pic2=self.dokme_1_2['image']
         self.pic3=self.dokme_1_3['image']
@@ -62,69 +58,62 @@ class game_x_o_(Tk):
         self.pic7=self.dokme_3_1['image']
         self.pic8=self.dokme_3_2['image']
         self.pic9=self.dokme_3_3['image']
-        if self.img_set == 'o':
-            self.nobat_v='pyimage2'
-            self.barande='o'
-        
-        if self.img_set == 'x':
-            self.nobat_v='pyimage1'
-            self.barande='x'
-
-        if self.pic1 == self.nobat_v and self.pic2 == self.nobat_v and self.pic3 == self.nobat_v:
-
-            print(f'barande :{self.barande}')
-            self.page_bord()
-
-        if self.pic4 == self.nobat_v and self.pic5 == self.nobat_v and self.pic6 == self.nobat_v:
-            print(f'barande :{self.barande}')
-            self.page_bord()
-
-        if self.pic7 == self.nobat_v and self.pic8 == self.nobat_v and self.pic9 == self.nobat_v:
-            print(f'barande :{self.barande}')
-            self.page_bord()
 
 
-        if self.pic1 == self.nobat_v and self.pic4 == self.nobat_v and self.pic7 == self.nobat_v:
-            print(f'barande :{self.barande}')
-            self.page_bord()
+    def halat_ha(self):
+        self.counter +=1  
 
-        if self.pic2 == self.nobat_v and self.pic5 == self.nobat_v and self.pic8 == self.nobat_v:
-            print(f'barande :{self.barande}')
-            self.page_bord()
+        if self.counter == 9 :
+            self.barande='mosavi shod'
+            self.page_bord()    
 
-        if self.pic3 == self.nobat_v and self.pic6 == self.nobat_v and self.pic9 == self.nobat_v:
-            print(f'barande :{self.barande}')
-            self.page_bord()
+        else:
+            self.scan_pictures()
 
-        if self.pic1 == self.nobat_v and self.pic5 == self.nobat_v and self.pic9 == self.nobat_v:
-            print(f'barande :{self.barande}')
-            self.page_bord()
+            if self.img_set == 'o':
+                self.nobat_v='pyimage2'
+                self.barande='o barande shod'
+            
+            if self.img_set == 'x':
+                self.nobat_v='pyimage1'
+                self.barande='x barande shod'
 
-        if self.pic3 == self.nobat_v and self.pic5 == self.nobat_v and self.pic7 == self.nobat_v:
-            print(f'barande :{self.barande}')
-            self.page_bord()
+            if self.pic1 == self.nobat_v and self.pic2 == self.nobat_v and self.pic3 == self.nobat_v:
+                self.page_bord()
+
+            if self.pic4 == self.nobat_v and self.pic5 == self.nobat_v and self.pic6 == self.nobat_v:
+                self.page_bord()
+
+            if self.pic7 == self.nobat_v and self.pic8 == self.nobat_v and self.pic9 == self.nobat_v:
+                self.page_bord()
+
+
+            if self.pic1 == self.nobat_v and self.pic4 == self.nobat_v and self.pic7 == self.nobat_v:
+                self.page_bord()
+
+            if self.pic2 == self.nobat_v and self.pic5 == self.nobat_v and self.pic8 == self.nobat_v:
+                self.page_bord()
+
+            if self.pic3 == self.nobat_v and self.pic6 == self.nobat_v and self.pic9 == self.nobat_v:
+                self.page_bord()
+
+            if self.pic1 == self.nobat_v and self.pic5 == self.nobat_v and self.pic9 == self.nobat_v:
+                self.page_bord()
+
+            if self.pic3 == self.nobat_v and self.pic5 == self.nobat_v and self.pic7 == self.nobat_v:
+                self.page_bord()
 
     def page_bord(self):
-        self.ghab_x.grid_forget()
-        self.ghab_o.grid_forget()
-        self.barchasb_x.grid_forget()
-        self.barchasb_o.grid_forget()
-        self.dokme_d.grid_forget()
-        self.dokme_1_1.grid_forget()
-        self.dokme_1_2.grid_forget()
-        self.dokme_1_3.grid_forget()
-        self.dokme_2_1.grid_forget()
-        self.dokme_2_2.grid_forget()
-        self.dokme_2_3.grid_forget()
-        self.dokme_3_1.grid_forget()
-        self.dokme_3_2.grid_forget()
-        self.dokme_3_3.grid_forget()
+        self.forget('page_bord')
+
+        self.geometry('510x400')
+
         self.config(bg='cornflower blue')
 
-        self.libel_1 = Label(self , width=20 , height=4 , text=f'{self.barande} barande shod' , font=("permanent marker" , 12) , bg='gold' , bd=1 )
+        self.libel_1 = Label(self , width=20 , height=4 , text= self.barande , font=("permanent marker" , 12) , bg='gold' , bd=1 )
         self.libel_1.grid( padx = 10 ,pady = 10 , row=0 , column=1)
 
-        self.btn_1 = Button(self , width=12 , height = 5 , text='Retry' , bg='cyan' , activebackground='blue' , font=("permanent marker" , 12) , bd=4 , command=lambda:self.play())
+        self.btn_1 = Button(self , width=12 , height = 5 , text='Retry' , bg='cyan' , activebackground='blue' , font=("permanent marker" , 12) , bd=4 , command=lambda:self.play('Retry'))
         self.btn_1.grid( padx = 5 ,pady = 10 , row=1 , column=0)
 
         self.btn_2 = Button(self , width=12 , height = 5 , text='Exit' , bg='purple' , activebackground='DarkSlateBlue' , font=("permanent marker" , 12) , bd=4 , command=lambda:self.exit())
@@ -133,12 +122,49 @@ class game_x_o_(Tk):
         self.btn_3 = Button(self , width=12 , height = 5 , text='Main menue' , bg='light green' , activebackground='green' , font=("permanent marker" , 12 ) , bd=4 , command=lambda:self.menue_start('main') ) 
         self.btn_3.grid( padx = 5 ,pady = 10 , row=1 , column=1)
 
-    def forget(self):
-        self.ghab_1.grid_forget()
-        self.barchasb_1.grid_forget()
-        self.dokme_seting.grid_forget()
-        self.dokme_s.grid_forget()
-        self.dokme_e.grid_forget()
+    def forget(self , a):
+        if a == 'main' :
+            self.geometry('330x500')
+            self.config(bg='light blue')
+            self.libel_1.grid_forget()
+            self.btn_1.grid_forget()
+            self.btn_2.grid_forget()
+            self.btn_3.grid_forget()
+
+        if a == 'seting' or a == 'page_2':
+            self.ghab_1.grid_forget()
+            self.barchasb_1.grid_forget()
+            self.dokme_seting.grid_forget()
+            self.dokme_s.grid_forget()
+            self.dokme_e.grid_forget()
+
+        if a == 'page_bord':
+            self.ghab_x.grid_forget()
+            self.ghab_o.grid_forget()
+            self.barchasb_x.grid_forget()
+            self.barchasb_o.grid_forget()
+            self.dokme_d.grid_forget()
+            self.dokme_1_1.grid_forget()
+            self.dokme_1_2.grid_forget()
+            self.dokme_1_3.grid_forget()
+            self.dokme_2_1.grid_forget()
+            self.dokme_2_2.grid_forget()
+            self.dokme_2_3.grid_forget()
+            self.dokme_3_1.grid_forget()
+            self.dokme_3_2.grid_forget()
+            self.dokme_3_3.grid_forget()
+            
+        if a == 'Retry':
+            self.geometry('800x500')
+            self.config(bg='light blue')
+            self.libel_1.grid_forget()
+            self.btn_1.grid_forget()
+            self.btn_2.grid_forget()
+            self.btn_3.grid_forget()
+
+        if a == 'play' :
+
+            self.dokme_play.grid_forget()
 
     def nobat(self):
         if self.img_set == 'x':
@@ -204,19 +230,27 @@ class game_x_o_(Tk):
 
 
     def page_2(self):
-        self.forget()
-        self.dokme_play = Button(self , width=20 , height=3 , text='play', activebackground='yellow', bg='lime' , font=("permanent marker" , 12) , bd= 10 , command=lambda:self.play())
+        self.forget('page_2')
+        self.dokme_play = Button(self , width=20 , height=3 , text='play', activebackground='yellow', bg='lime' , font=("permanent marker" , 12) , bd= 10 , command=lambda:self.play('play'))
         self.dokme_play.grid( row=1 , column=1)
 
     
-    def play(self):
-       
-        self.dokme_play.grid_forget()
+    def play(self , X):
+        self.forget(X)
+        self.v_dokme_1_1 = 'normal'
+        self.v_dokme_1_2 = 'normal'
+        self.v_dokme_1_3 = 'normal'
+        self.v_dokme_2_1 = 'normal'
+        self.v_dokme_2_2 = 'normal'
+        self.v_dokme_2_3 = 'normal'
+        self.v_dokme_3_1 = 'normal'
+        self.v_dokme_3_2 = 'normal'
+        self.v_dokme_3_3 = 'normal'
         self.craete_objects1()
 
     def exit(self):
-        self.destroy()
 
+        self.destroy()
 
     def craete_objects1(self):
 
@@ -264,18 +298,8 @@ class game_x_o_(Tk):
 
 
     def dokme_cod(self,x):
-        
 
-        self.pic1=self.dokme_1_1['image']
-        self.pic2=self.dokme_1_2['image']
-        self.pic3=self.dokme_1_3['image']
-        self.pic4=self.dokme_2_1['image']
-        self.pic5=self.dokme_2_2['image']
-        self.pic6=self.dokme_2_3['image']
-        self.pic7=self.dokme_3_1['image']
-        self.pic8=self.dokme_3_2['image']
-        self.pic9=self.dokme_3_3['image']
-
+        self.scan_pictures()
 
         if x == 'dokme_1_1' and self.v_dokme_1_1 == 'normal':
 
